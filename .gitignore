@@ -1,0 +1,11 @@
+# Fotos originais em alta resolução ficam fora do repositório (mais de 30 MB).
+# As versões otimizadas para web estão em assets/img/.
+assets/originais/
+
+# Sistema / editores
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.log
