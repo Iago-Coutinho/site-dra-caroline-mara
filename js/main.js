@@ -98,7 +98,7 @@
     function applyFilter() {
       var shown = 0;
       items.forEach(function (it) {
-        var match = current === "all" || it.getAttribute("data-cat") === current;
+        var match = current === "all" || (" " + it.getAttribute("data-cat") + " ").indexOf(" " + current + " ") !== -1;
         it.classList.toggle("is-hidden", !match);
         if (match) {
           shown += 1;
@@ -126,7 +126,6 @@
     if (lb && typeof lb.showModal === "function") {
       var lbImg = lb.querySelector("img");
       var lbCap = lb.querySelector(".lightbox__cap span:first-child");
-      var lbTag = lb.querySelector(".lightbox__cap span:last-child");
       var index = 0;
 
       function visibleItems() {
@@ -141,7 +140,6 @@
         lbImg.src = it.getAttribute("data-full") || img.currentSrc || img.src;
         lbImg.alt = img.alt;
         lbCap.textContent = it.getAttribute("data-caption") || "";
-        lbTag.textContent = it.getAttribute("data-tag") || "";
       }
       items.forEach(function (it) {
         it.addEventListener("click", function () {
@@ -161,6 +159,31 @@
       });
     }
   }
+
+  /* ---------- Carrossel ---------- */
+  document.querySelectorAll(".carousel").forEach(function (c) {
+    var track = c.querySelector(".carousel__track");
+    var slides = c.querySelectorAll(".carousel__slide");
+    var dots = c.querySelectorAll(".carousel__dots span");
+    var prev = c.querySelector(".carousel__btn--prev");
+    var next = c.querySelector(".carousel__btn--next");
+    function idx() { return Math.round(track.scrollLeft / Math.max(1, track.clientWidth)); }
+    function update() {
+      var i = idx();
+      dots.forEach(function (d, k) { d.classList.toggle("is-active", k === i); });
+      prev.disabled = i <= 0;
+      next.disabled = i >= slides.length - 1;
+    }
+    function go(i) { track.scrollTo({ left: i * track.clientWidth, behavior: reduceMotion ? "auto" : "smooth" }); }
+    prev.addEventListener("click", function () { go(idx() - 1); });
+    next.addEventListener("click", function () { go(idx() + 1); });
+    track.addEventListener("scroll", function () { window.requestAnimationFrame(update); }, { passive: true });
+    track.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowLeft") { e.preventDefault(); go(idx() - 1); }
+      if (e.key === "ArrowRight") { e.preventDefault(); go(idx() + 1); }
+    });
+    update();
+  });
 
   /* ---------- Ano no rodape ---------- */
   var y = document.querySelector("[data-year]");
