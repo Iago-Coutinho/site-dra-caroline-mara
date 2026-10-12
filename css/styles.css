@@ -1,6 +1,6 @@
 /* =============================================================
    Dra. Caroline Mara - site institucional
-   Paleta: branco + cinza. Tipografia: Fraunces + Inter.
+   Paleta: branco + cinza. Tipografia: Montserrat + Inter.
    ============================================================= */
 
 :root {
@@ -25,7 +25,7 @@
   --radius-sm: 14px;
   --shadow-sm: 0 1px 2px rgba(38, 38, 37, .05), 0 6px 18px -10px rgba(38, 38, 37, .18);
   --shadow-md: 0 2px 6px rgba(38, 38, 37, .06), 0 18px 40px -18px rgba(38, 38, 37, .28);
-  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-display: "Montserrat", "Helvetica Neue", Arial, sans-serif;
   --font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --max: 1180px;
   --gutter: clamp(16px, 4vw, 40px);
@@ -49,13 +49,14 @@ a { color: inherit; }
 button { font: inherit; color: inherit; }
 h1, h2, h3, h4 {
   font-family: var(--font-display);
-  font-weight: 500;
-  line-height: 1.12;
-  letter-spacing: -.01em;
+  font-weight: 400;
+  line-height: 1.18;
+  letter-spacing: -.015em;
+  text-wrap: balance;
   margin: 0;
 }
-h1 { font-size: clamp(2.3rem, 5.2vw, 4.1rem); }
-h2 { font-size: clamp(1.9rem, 3.6vw, 2.8rem); }
+h1 { font-size: clamp(2.1rem, 4.6vw, 3.6rem); }
+h2 { font-size: clamp(1.75rem, 3.2vw, 2.5rem); }
 h3 { font-size: clamp(1.35rem, 2.2vw, 1.75rem); }
 p { margin: 0 0 1em; }
 .muted { color: var(--ink-2); }
@@ -104,8 +105,8 @@ p { margin: 0 0 1em; }
 .header__inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 76px; transition: height .3s var(--ease); }
 .header.is-scrolled .header__inner { height: 64px; }
 .brand { display: flex; flex-direction: column; text-decoration: none; line-height: 1.1; }
-.brand__name { font-family: var(--font-display); font-size: 1.25rem; font-weight: 500; letter-spacing: -.01em; }
-.brand__sub { font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin-top: 3px; }
+.brand__name { font-family: var(--font-display); font-size: .95rem; font-weight: 400; letter-spacing: .28em; text-transform: uppercase; }
+.brand__sub { font-size: .66rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin-top: 5px; }
 .nav { display: flex; align-items: center; gap: 28px; }
 .nav a { text-decoration: none; font-size: .93rem; font-weight: 500; color: var(--ink-2); position: relative; padding: 6px 0; }
 .nav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1.5px; background: var(--tone-500); transform: scaleX(0); transform-origin: left; transition: transform .3s var(--ease); }
@@ -142,7 +143,7 @@ p { margin: 0 0 1em; }
 .hero__bg::after { content: ""; position: absolute; width: 40vw; height: 40vw; max-width: 480px; max-height: 480px; left: -14vw; bottom: -20vw; border-radius: 50%; background: radial-gradient(closest-side, var(--tone-50), transparent 72%); }
 .hero__grid { position: relative; display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(32px, 6vw, 80px); align-items: center; }
 .hero__text .eyebrow { margin-bottom: 20px; }
-.hero__text h1 { margin-bottom: 20px; max-width: 12ch; }
+.hero__text h1 { margin-bottom: 20px; max-width: 14ch; }
 .hero__text h1 em { font-style: italic; color: var(--tone-700); }
 .hero__text .lead { margin-bottom: 30px; }
 .hero__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 36px; }
@@ -366,4 +367,10 @@ p { margin: 0 0 1em; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
   .reveal { opacity: 1; transform: none; }
+}
+
+/* Nome em maiúsculas espaçadas: reduz em telas estreitas para caber ao lado dos botões */
+@media (max-width: 420px) {
+  .brand__name { font-size: .78rem; letter-spacing: .2em; }
+  .brand__sub { font-size: .6rem; letter-spacing: .1em; }
 }
