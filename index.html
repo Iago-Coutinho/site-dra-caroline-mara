@@ -12,13 +12,13 @@
   <meta property="og:title" content="Dra. Caroline Mara | Estética com naturalidade e propósito">
   <meta property="og:description" content="Dentista em Recife e Carpina. Estética do sorriso, harmonização facial e reabilitação oral com naturalidade e propósito.">
   <meta property="og:url" content="https://dracarolinemara.com.br/">
-  <meta property="og:image" content="https://dracarolinemara.com.br/assets/img/dra-caroline/caroline-retrato-hero-2.jpg">
+  <meta property="og:image" content="https://dracarolinemara.com.br/assets/img/dra-caroline/caroline-retrato-hero-3.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2351514f'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Georgia,serif' font-size='34' fill='%23fff'%3EC%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="assets/img/dra-caroline/caroline-retrato-hero-2.webp" type="image/webp">
+  <link rel="preload" as="image" href="assets/img/dra-caroline/caroline-retrato-hero-3.jpg">
   <link rel="stylesheet" href="css/styles.css">
   <script type="application/ld+json">
   {
@@ -28,7 +28,7 @@
         "@type": "Dentist",
         "@id": "https://dracarolinemara.com.br/#recife",
         "name": "Dra. Caroline Mara - Recife",
-        "image": "https://dracarolinemara.com.br/assets/img/dra-caroline/caroline-retrato-hero-2.jpg",
+        "image": "https://dracarolinemara.com.br/assets/img/dra-caroline/caroline-retrato-hero-3.jpg",
         "url": "https://dracarolinemara.com.br/",
         "sameAs": ["https://www.instagram.com/dra.carolinemara/"],
         "address": { "@type": "PostalAddress", "streetAddress": "Praça de Casa Forte, 381, Sala 102 - Empresarial Alcides Fernandes", "addressLocality": "Recife", "addressRegion": "PE", "postalCode": "52061-420", "addressCountry": "BR" },
@@ -38,7 +38,7 @@
         "@type": "Dentist",
         "@id": "https://dracarolinemara.com.br/#carpina",
         "name": "Dra. Caroline Mara - Carpina",
-        "image": "https://dracarolinemara.com.br/assets/img/dra-caroline/caroline-retrato-hero-2.jpg",
+        "image": "https://dracarolinemara.com.br/assets/img/dra-caroline/caroline-retrato-hero-3.jpg",
         "url": "https://dracarolinemara.com.br/",
         "sameAs": ["https://www.instagram.com/dra.carolinemara/"],
         "address": { "@type": "PostalAddress", "streetAddress": "Rua Doutor Manoel Borba, 305", "addressLocality": "Carpina", "addressRegion": "PE", "postalCode": "55818-580", "addressCountry": "BR" },
@@ -110,8 +110,7 @@
     <div class="hero__media reveal" style="--d:120ms">
       <div class="hero__frame">
         <picture>
-          <source srcset="assets/img/dra-caroline/caroline-retrato-hero-2.webp" type="image/webp">
-          <img src="assets/img/dra-caroline/caroline-retrato-hero-2.jpg" width="1200" height="1800" alt="Dra. Caroline Mara sorrindo, com blazer caramelo, apoiando o queixo nas mãos" fetchpriority="high">
+          <img src="assets/img/dra-caroline/caroline-retrato-hero-3.jpg" width="1200" height="1800" alt="Dra. Caroline Mara sorrindo, com blazer caramelo, apoiando o queixo nas mãos" fetchpriority="high">
         </picture>
       </div>
     </div>
@@ -276,11 +275,21 @@
     </div>
 
     <div class="feature reveal">
-      <figure class="feature__media feature__media--portrait">
-        <picture>
-          <source srcset="assets/img/estetica/facetas-resina-02.webp" type="image/webp">
-          <img src="assets/img/estetica/facetas-resina-02.jpg" width="933" height="1400" alt="Paciente sorrindo após facetas em resina" loading="lazy">
-        </picture>
+      <figure class="feature__media carousel" aria-roledescription="carrossel" aria-label="Casos de facetas em resina">
+        <div class="carousel__track" tabindex="0">
+          <div class="carousel__slide" aria-label="1 de 2">
+            <img src="assets/img/estetica/facetas-resina-04.jpg" width="1400" height="1400" alt="Antes e depois de facetas em resina" loading="lazy">
+          </div>
+          <div class="carousel__slide carousel__slide--portrait" aria-label="2 de 2">
+            <picture>
+              <source srcset="assets/img/estetica/facetas-resina-02.webp" type="image/webp">
+              <img src="assets/img/estetica/facetas-resina-02.jpg" width="933" height="1400" alt="Paciente sorrindo após facetas em resina" loading="lazy">
+            </picture>
+          </div>
+        </div>
+        <button class="carousel__btn carousel__btn--prev" type="button" aria-label="Foto anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+        <button class="carousel__btn carousel__btn--next" type="button" aria-label="Próxima foto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+        <div class="carousel__dots" aria-hidden="true"><span class="is-active"></span><span></span></div>
         <figcaption>Facetas em resina</figcaption>
       </figure>
       <div class="feature__text">
