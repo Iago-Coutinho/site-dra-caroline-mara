@@ -95,19 +95,58 @@
     var expanded = false;
     var current = "all";
 
+    /* Layout em colunas montado por script: cada foto vai para a coluna mais baixa,
+       na ordem original. Como as primeiras fotos sempre caem no mesmo lugar,
+       "ver mais casos" só acrescenta fotos abaixo, sem reembaralhar as que já estavam. */
+    var cols = [];
+    function colCount() {
+      if (window.matchMedia("(max-width: 900px)").matches) return 2;
+      return 3;
+    }
+    function ratio(it) {
+      var img = it.querySelector("img");
+      var w = parseFloat(img.getAttribute("width")) || 1;
+      var h = parseFloat(img.getAttribute("height")) || 1;
+      return h / w;
+    }
+    function layout(visible) {
+      var n = colCount();
+      if (cols.length !== n) {
+        cols.forEach(function (c) { c.remove(); });
+        cols = [];
+        for (var k = 0; k < n; k++) {
+          var c = document.createElement("div");
+          c.className = "gallery__col";
+          gallery.appendChild(c);
+          cols.push(c);
+        }
+      }
+      var heights = cols.map(function () { return 0; });
+      visible.forEach(function (it) {
+        var best = 0;
+        for (var k = 1; k < heights.length; k++) if (heights[k] < heights[best] - 0.01) best = k;
+        cols[best].appendChild(it);
+        heights[best] += ratio(it) + 0.12; /* 0.12 = legenda e espaçamento */
+      });
+    }
+
     function applyFilter() {
-      var shown = 0;
+      var visible = [];
+      var matches = 0;
       items.forEach(function (it) {
         var match = current === "all" || (" " + it.getAttribute("data-cat") + " ").indexOf(" " + current + " ") !== -1;
-        it.classList.toggle("is-hidden", !match);
-        if (match) {
-          shown += 1;
-          it.classList.toggle("is-collapsed", !expanded && current === "all" && shown > INITIAL);
-        } else {
-          it.classList.remove("is-collapsed");
-        }
+        if (match) matches += 1;
+        var show = match && (expanded || current !== "all" || matches <= INITIAL);
+        it.classList.toggle("is-hidden", !show);
+        it.classList.remove("is-collapsed");
+        if (show) visible.push(it);
       });
-      if (moreBtn) moreBtn.hidden = expanded || current !== "all" || items.length <= INITIAL;
+      layout(visible);
+      if (moreBtn) {
+        moreBtn.hidden = current !== "all" || items.length <= INITIAL;
+        moreBtn.textContent = expanded ? "Ver menos casos" : "Ver mais casos";
+        moreBtn.setAttribute("aria-expanded", String(expanded));
+      }
     }
     chips.forEach(function (chip) {
       chip.addEventListener("click", function () {
@@ -118,7 +157,18 @@
         window.track("gallery_filter", { label: current });
       });
     });
-    if (moreBtn) moreBtn.addEventListener("click", function () { expanded = true; applyFilter(); });
+    if (moreBtn) moreBtn.addEventListener("click", function () {
+      expanded = !expanded;
+      applyFilter();
+      if (!expanded) {
+        var section = document.getElementById("resultados");
+        if (section) section.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+      }
+    });
+    var lastCols = colCount();
+    window.addEventListener("resize", function () {
+      if (colCount() !== lastCols) { lastCols = colCount(); applyFilter(); }
+    });
     applyFilter();
 
     /* Lightbox */
